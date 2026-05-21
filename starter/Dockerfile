@@ -5,7 +5,7 @@
 
 FROM python:3.11-slim as builder
 WORKDIR /app
-COPY week2/backend/requirements.txt .
+COPY backend/requirements.txt .
 
 # Install dependencies + system libraries
 # Important: LightGBM needs libgomp1 (OpenMP library)
@@ -23,8 +23,8 @@ RUN apt-get update && apt-get install -y libgomp1 curl && rm -rf /var/lib/apt/li
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
-COPY week2/backend/ .
-COPY week2/metadata /metadata
+COPY backend/ .
+COPY metadata /metadata
 RUN mkdir -p /data/processed /app/frontend/public
 
 # Health check: Kubernetes will call this periodically

@@ -67,7 +67,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./week2/starter/Dockerfile
+        file: ./starter/Dockerfile
         push: true
         tags: |
           ${{ env.ARTIFACT_REGISTRY_REGION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.ARTIFACT_REGISTRY_REPO }}/${{ env.IMAGE_NAME }}:latest
